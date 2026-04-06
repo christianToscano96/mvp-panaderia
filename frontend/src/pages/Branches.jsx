@@ -13,10 +13,11 @@ export default function Branches() {
   const [form, setForm] = useState({ name: '', address: '', phone: '' })
 
   // Query con React Query
-  const { data: branches = [], isLoading } = useQuery({
-    queryKey: ['branches'],
-    queryFn: () => getBranches().then(res => res.data),
+  const { data: result, isLoading } = useQuery({
+    queryKey: ['branches', 'all'],
+    queryFn: () => getBranches(),
   })
+  const branches = result?.data || []
 
   // Mutation
   const mutation = useMutation({
