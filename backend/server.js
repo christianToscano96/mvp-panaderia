@@ -40,6 +40,8 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/users', require('./src/routes/users'));
 app.use('/api/branches', require('./src/routes/branches'));
+app.use('/api/categories', require('./src/routes/categories'));
+app.use('/api/raw-materials', require('./src/routes/rawMaterials'));
 
 // Middleware de manejo de errores
 const errorHandler = (err, req, res, next) => {

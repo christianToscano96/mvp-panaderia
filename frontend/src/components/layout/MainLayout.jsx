@@ -22,6 +22,8 @@ export default function MainLayout({ children }) {
   const navItems = [
     { label: 'Dashboard', path: '/', icon: 'HiHome', roles: ['admin', 'manager', 'cajero', 'panadero'] },
     { label: 'Sucursales', path: '/branches', icon: 'HiOfficeBuilding', roles: ['admin', 'manager'] },
+    { label: 'Categorías', path: '/categories', icon: 'HiTag', roles: ['admin', 'manager'] },
+    { label: 'Materia Prima', path: '/raw-materials', icon: 'HiBeaker', roles: ['admin', 'manager', 'panadero'] },
     { label: 'Ventas', path: '/sales', icon: 'HiCurrencyDollar', roles: ['admin', 'manager', 'cajero'] },
     { label: 'Producción', path: '/production', icon: 'HiCube', roles: ['admin', 'manager', 'panadero'] },
     { label: 'Stock', path: '/stock', icon: 'HiDatabase', roles: ['admin', 'manager'] },
@@ -35,6 +37,8 @@ export default function MainLayout({ children }) {
   const icons = {
     HiHome: '📊',
     HiOfficeBuilding: '🏪',
+    HiTag: '🏷️',
+    HiBeaker: '🧪',
     HiCurrencyDollar: '💰',
     HiCube: '🍞',
     HiDatabase: '📦',
