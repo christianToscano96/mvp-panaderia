@@ -5,6 +5,7 @@ import Branches from '../pages/Branches';
 import Categories from '../pages/Categories';
 import RawMaterials from '../pages/RawMaterials';
 import Products from '../pages/Products';
+import Recipes from '../pages/Recipes';
 import PrivateRoute from '../components/layout/PrivateRoute';
 import MainLayout from '../components/layout/MainLayout';
 
@@ -23,6 +24,7 @@ export default function AppRouter() {
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/raw-materials" element={<RawMaterials />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/recipes" element={<Recipes />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </MainLayout>
