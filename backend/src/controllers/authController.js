@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Branch = require('../models/Branch');
 const { generateToken } = require('../middlewares/auth');
 
 /**
@@ -102,13 +103,22 @@ exports.register = async (req, res, next) => {
       });
     }
 
+    // Obtener branch por defecto si no se provee
+    let userBranch = branch;
+    if (!userBranch) {
+      const defaultBranch = await Branch.findOne({ name: 'Casa Central' });
+      if (defaultBranch) {
+        userBranch = defaultBranch._id;
+      }
+    }
+
     // Crear usuario
     const user = await User.create({
       name,
       email,
       password,
       role: role || 'cajero',
-      branch
+      branch: userBranch
     });
 
     // Generar token

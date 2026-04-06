@@ -1,45 +1,30 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 /**
- * PrivateRoute
- * Protege rutas que requieren autenticación
- *
- * @param {{
- *   children: ReactNode,
- *   roles?: string[]
- * }}
- *
- * @example
- * // Ruta protegida
- * <PrivateRoute>
- *   <Dashboard />
- * </PrivateRoute>
- *
- * // Ruta con rol específico
- * <PrivateRoute roles={['admin', 'manager']}>
- *   <AdminPanel />
- * </PrivateRoute>
+ * PrivateRoute - Protege rutas que requieren autenticación
+ * 
+ * @param {children: ReactNode, roles?: string[]}
  */
 export default function PrivateRoute({ children, roles }) {
-  const { user, loading, isAuthenticated } = useAuth();
-  const location = useLocation();
+  const { user, loading, isAuthenticated } = useAuth()
+  const location = useLocation()
 
-  // Mientras verifica auth, mostrar loading
+  // Mientras verifica auth
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
-    );
+    )
   }
 
   // No autenticado → redirigir a login
   if (!isAuthenticated) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />
   }
 
-  // Verificar roles si se especificaron
+  // Verificar roles
   if (roles && !roles.includes(user?.role)) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -48,8 +33,8 @@ export default function PrivateRoute({ children, roles }) {
           <p className="text-gray-500 mt-2">No tenés permiso para acceder a esta sección.</p>
         </div>
       </div>
-    );
+    )
   }
 
-  return children;
+  return children
 }

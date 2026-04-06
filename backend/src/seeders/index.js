@@ -16,61 +16,26 @@ const seedData = async () => {
 
     // Crear sucursales
     const branches = await Branch.insertMany([
-      {
-        name: 'Casa Central',
-        address: 'Av. principal 123',
-        phone: '11-1234-5678',
-        isActive: true
-      },
-      {
-        name: 'Sucursal Norte',
-        address: 'Av. Norte 456',
-        phone: '11-9876-5432',
-        isActive: true
-      }
+      { name: 'Casa Central', address: 'Av. principal 123', phone: '11-1234-5678', isActive: true },
+      { name: 'Sucursal Norte', address: 'Av. Norte 456', phone: '11-9876-5432', isActive: true }
     ]);
     console.log('✅ 2 sucursales creadas');
 
-    // Obtener ObjectIds de las sucursales
     const centralId = branches[0]._id;
     const norteId = branches[1]._id;
 
-    // Crear usuarios seed
-    const users = await User.insertMany([
-      {
-        name: 'Juan Admin',
-        email: 'admin@panaderia.com',
-        password: 'admin123',
-        role: 'admin',
-        branch: centralId,
-        isActive: true
-      },
-      {
-        name: 'Maria Manager',
-        email: 'manager@panaderia.com',
-        password: 'manager123',
-        role: 'manager',
-        branch: centralId,
-        isActive: true
-      },
-      {
-        name: 'Pedro Cajero',
-        email: 'cajero@panaderia.com',
-        password: 'cajero123',
-        role: 'cajero',
-        branch: centralId,
-        isActive: true
-      },
-      {
-        name: 'Lucas Panadero',
-        email: 'panadero@panaderia.com',
-        password: 'panadero123',
-        role: 'panadero',
-        branch: centralId,
-        isActive: true
-      }
+    // Crear usuarios - el modelo ya hashea el password con pre-save hook
+    const users = await User.create([
+      { name: 'Juan Admin', email: 'admin@panaderia.com', password: 'admin123', role: 'admin', branch: centralId },
+      { name: 'Maria Manager', email: 'manager@panaderia.com', password: 'manager123', role: 'manager', branch: centralId },
+      { name: 'Pedro Cajero', email: 'cajero@panaderia.com', password: 'cajero123', role: 'cajero', branch: centralId },
+      { name: 'Lucas Panadero', email: 'panadero@panaderia.com', password: 'panadero123', role: 'panadero', branch: centralId }
     ]);
     console.log('✅ 4 usuarios creados');
+
+    // Verificar que el password se hasheó
+    const admin = await User.findOne({ email: 'admin@panaderia.com' });
+    console.log('🔍 Password hash:', admin.password.substring(0, 20) + '...');
 
     console.log('\n📋 Credenciales seed:');
     console.log('  Admin: admin@panaderia.com / admin123');

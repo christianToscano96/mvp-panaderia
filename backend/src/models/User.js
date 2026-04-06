@@ -69,15 +69,13 @@ userSchema.index({ email: 1, isActive: 1 });
  * Pre-save hook: hashear password
  * Solo ejecuta si el password fue modificado
  */
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function() {
   // Si no es modificación, salir
-  if (!this.isModified('password')) return next();
+  if (!this.isModified('password')) return;
   
   // Hashear con salt 12
   const salt = await bcrypt.genSalt(12);
   this.password = await bcrypt.hash(this.password, salt);
-  
-  next();
 });
 
 /**
