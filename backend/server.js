@@ -43,6 +43,7 @@ app.use('/api/branches', require('./src/routes/branches'));
 app.use('/api/categories', require('./src/routes/categories'));
 app.use('/api/raw-materials', require('./src/routes/rawMaterials'));
 app.use('/api/products', require('./src/routes/products'));
+app.use('/api/recipes', require('./src/routes/recipes'));
 
 // Middleware de manejo de errores
 const errorHandler = (err, req, res, next) => {

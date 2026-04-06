@@ -25,6 +25,7 @@ export default function MainLayout({ children }) {
     { label: 'Categorías', path: '/categories', icon: 'HiTag', roles: ['admin', 'manager'] },
     { label: 'Materia Prima', path: '/raw-materials', icon: 'HiBeaker', roles: ['admin', 'manager', 'panadero'] },
     { label: 'Productos', path: '/products', icon: 'HiCube', roles: ['admin', 'manager', 'cajero', 'panadero'] },
+    { label: 'Recetas', path: '/recipes', icon: 'HiBookOpen', roles: ['admin', 'manager', 'panadero'] },
     { label: 'Ventas', path: '/sales', icon: 'HiCurrencyDollar', roles: ['admin', 'manager', 'cajero'] },
     { label: 'Producción', path: '/production', icon: 'HiFire', roles: ['admin', 'manager', 'panadero'] },
     { label: 'Stock', path: '/stock', icon: 'HiDatabase', roles: ['admin', 'manager'] },
