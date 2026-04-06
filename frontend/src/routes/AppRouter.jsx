@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
+import Branches from '../pages/Branches';
 import PrivateRoute from '../components/layout/PrivateRoute';
 import MainLayout from '../components/layout/MainLayout';
 
@@ -22,7 +23,7 @@ export default function AppRouter() {
             <MainLayout>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                {/* Agregar más rutas aquí */}
+                <Route path="/branches" element={<Branches />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </MainLayout>
